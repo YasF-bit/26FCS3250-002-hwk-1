@@ -25,8 +25,8 @@ def list_recipes():
 def create_recipe():
     form = RecipeForm()
     if form.validate_on_submit(): 
-        # TODO #3: complete the append line with the missing fields
-        
+        recipes.append({'number': form.number.data, 'title': form.title.data,
+                        'type': form.type.data, 'tags': form.tags.data})
         return redirect(url_for('list_recipes'))
     else:
        return render_template('recipes_create.html', form=form)

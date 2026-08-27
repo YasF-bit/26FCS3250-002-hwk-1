@@ -7,11 +7,19 @@
         <th>Type</th>
         <th>Tags</th>
     </tr>
-    <!-- TODO #1: using a for loop, render recipes using parameter "recipes" -->
+    {% for recipe in recipes %}
+    <tr class="{{ 'even_row' if loop.index is even else 'odd_row' }}">
+        <td>{{ recipe.number }}</td>
+        <td>{{ recipe.title }}</td>
+        <td>{{ recipe.type }}</td>
+        <td>{{ recipe.tags }}</td>
+    </tr>
+    {% endfor %}
 </table>
 <br />
-<button type="button" class="create_button" onclick=simple_action("{{ url_for('create_recipe') }}")>Create</button>
-<br />
+<form action="{{ url_for('create_recipe') }}" method="get">
+    <button type="submit" class="create_button">Create</button>
+</form>
 <script type="text/javascript">
 function simple_action(target) {
     window.location = target;
